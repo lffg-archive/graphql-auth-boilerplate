@@ -21,7 +21,7 @@ export const defaultOptions: IConnOptions[] = [
     type: 'mysql',
     synchronize: true,
     logging: false,
-    entities: ['src/modules/**/*.entity.*'],
+    entities: ['src/entities/*.*'],
     migrations: ['src/database/migrations/**/*.*'],
     subscribers: ['src/database/subscriber/**/*.*']
   },
@@ -30,7 +30,7 @@ export const defaultOptions: IConnOptions[] = [
     type: 'mysql',
     synchronize: false,
     logging: false,
-    entities: ['dist/modules/**/*.entity.*'],
+    entities: ['dist/entities/*.*'],
     migrations: ['dist/database/migrations/**/*.*'],
     subscribers: ['dist/database/subscriber/**/*.*']
   },
@@ -39,7 +39,7 @@ export const defaultOptions: IConnOptions[] = [
     type: 'mysql',
     synchronize: true,
     logging: false,
-    entities: ['src/modules/**/*.entity.*'],
+    entities: ['src/entities/*.*'],
     migrations: ['src/database/migrations/**/*.*'],
     subscribers: ['src/database/subscriber/**/*.*']
   }
