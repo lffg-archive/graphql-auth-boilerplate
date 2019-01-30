@@ -5,7 +5,7 @@ import { createApolloServer } from './utils/createApolloServer'
 import { createConn } from './utils/database/createConnection'
 
 async function main() {
-  // Configure env variables:
+  // Sets the env vars:
   dotenv.config()
 
   // TypeORM:
