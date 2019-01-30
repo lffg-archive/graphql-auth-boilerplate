@@ -12,7 +12,8 @@
     "lint": "tslint --project tsconfig.json",
     "check-all": "yarn prettier && yarn lint",
     "start": "ts-node-dev --respawn --notify=false src/index.ts",
-    "c": "git-cz"
+    "c": "git-cz",
+    "uuid": "node -e 'console.log(require(\"uuid/v4\")())'"
   },
   "config": {
     "commitizen": {
