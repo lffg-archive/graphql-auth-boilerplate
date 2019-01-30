@@ -1,35 +1,12 @@
-import { Arg, Mutation, Query, Resolver } from 'type-graphql'
-import { GenericError } from '../../utils/error/GenericError'
-import { User } from './User.entity'
+import { Arg, Mutation, Resolver } from 'type-graphql'
+import { User } from '../../entities/User'
+import { RegisterInput } from './register/RegisterInput'
 
 @Resolver()
 export class RegisterResolver {
-  @Query(() => [User])
-  async users(): Promise<User[]> {
-    const users = await User.find()
-    return users
-  }
-
   @Mutation(() => User)
-  async register(
-    @Arg('username') username: string,
-    @Arg('password') password: string,
-    @Arg('email') email: string
-  ): Promise<User> {
-    try {
-      const user = await User.create({
-        username,
-        password,
-        email
-      }).save()
-
-      return user
-    } catch (error) {
-      if (error.code === 'ER_DUP_ENTRY') {
-        throw new GenericError('User already exists.', 'USER_EXISTS')
-      }
-
-      throw error
-    }
+  async register(@Arg('input') input: RegisterInput): Promise<User> {
+    const user = await User.create({ ...input }).save()
+    return user
   }
 }
