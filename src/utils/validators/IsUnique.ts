@@ -25,7 +25,8 @@ export function IsUnique(
       },
       validator: {
         async validate(value: any): Promise<boolean> {
-          const user = await entityClass.find({
+          const user = await entityClass.findOne({
+            select: ['id'],
             where: { [field]: value }
           })
 
