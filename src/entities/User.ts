@@ -13,8 +13,8 @@ import {
 @ObjectType()
 export class User extends BaseEntity {
   @Field(() => ID)
-  @PrimaryGeneratedColumn()
-  id: number
+  @PrimaryGeneratedColumn({ type: 'int' })
+  id: string
 
   @Field()
   @Column({ type: 'varchar', length: 30, unique: true })
