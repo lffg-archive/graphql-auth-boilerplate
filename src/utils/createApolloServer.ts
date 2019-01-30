@@ -19,7 +19,6 @@ export async function createApolloServer(root: string) {
   return new ApolloServer({
     schema,
 
-    // Format errors (only in production):
     formatError: (error: GraphQLError) => {
       // Format the validation errors:
       if (error.originalError instanceof ArgumentValidationError) {
