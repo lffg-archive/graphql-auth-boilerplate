@@ -11,7 +11,7 @@
     "prettier": "prettier --config .prettierrc.json --write 'src/**/*'",
     "lint": "tslint --project tsconfig.json",
     "check-all": "yarn prettier && yarn lint",
-    "start": "ts-node-dev --respawn src/index.ts",
+    "start": "ts-node-dev --respawn --notify=false src/index.ts",
     "c": "git-cz"
   },
   "config": {
