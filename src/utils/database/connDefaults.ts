@@ -20,7 +20,7 @@ export const defaultOptions: IConnOptions[] = [
     name: 'development',
     type: 'mysql',
     synchronize: true,
-    logging: false,
+    logging: true,
     entities: ['src/entities/*.*'],
     migrations: ['src/database/migrations/**/*.*'],
     subscribers: ['src/database/subscriber/**/*.*']
