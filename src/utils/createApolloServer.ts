@@ -1,7 +1,7 @@
 import { ApolloServer } from 'apollo-server-express'
 import { GraphQLError } from 'graphql'
 import { isAbsolute, join } from 'path'
-import { buildSchema } from 'type-graphql'
+import { ArgumentValidationError, buildSchema } from 'type-graphql'
 import uuid from 'uuid/v4'
 import { createErrorObject } from '../utils/error/createErrorObject'
 import { GenericError } from '../utils/error/GenericError'
@@ -21,9 +21,12 @@ export async function createApolloServer(root: string) {
 
     // Format errors (only in production):
     formatError: (error: GraphQLError) => {
-      // Only format errors in production:
-      if (process.env.NODE_ENV !== 'production') {
-        return error
+      // Format the validation errors:
+      if (error.originalError instanceof ArgumentValidationError) {
+        return {
+          ...createErrorObject(error.message, 'ERR_VALIDATION_ERROR'),
+          validationErrors: error.originalError.validationErrors
+        }
       }
 
       // If the raised error is an instance of GenericError, the details should
@@ -36,10 +39,14 @@ export async function createApolloServer(root: string) {
         )
       }
 
-      // Generates an unique ID for each error:
-      const errorId = uuid()
-      log(`ErrorID: ${errorId}`, error)
-      return createErrorObject('Internal error.', 'ERR_INTERNAL_ERROR')
+      if (process.env.NODE_ENV === 'production') {
+        // Generates an unique ID for each error:
+        const errorId = uuid()
+        log(`ErrorID: ${errorId}`, error)
+        return createErrorObject('Internal error.', 'ERR_INTERNAL_ERROR')
+      }
+
+      return error
     }
   })
 }
