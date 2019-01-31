@@ -1,16 +1,13 @@
 import { ApolloServer } from 'apollo-server-express'
-import { isAbsolute, join } from 'path'
+import { join } from 'path'
 import { buildSchema } from 'type-graphql'
+import { RESOLVERS_BASE_DIR } from '../../config/app'
 import { createContext as context } from './createContext'
 import { formatError } from './formatError'
 
-export async function createApolloServer(root: string) {
-  if (!isAbsolute(root)) {
-    throw new Error(`Invalid path (must be absolute): ${root}`)
-  }
-
+export async function createApolloServer() {
   const schema = await buildSchema({
-    resolvers: [join(root, 'modules', '**', '*Resolver.*')]
+    resolvers: [join(RESOLVERS_BASE_DIR, '**', '*Resolver.*')]
   })
 
   return new ApolloServer({

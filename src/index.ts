@@ -1,20 +1,21 @@
+// Sets the env vars and global values:
+// tslint:disable-next-line
+require('dotenv').config()
+global.__ROOT__ = __dirname
+
 import connectRedis from 'connect-redis'
-import cors = require('cors')
-import dotenv from 'dotenv-safe'
+import cors from 'cors'
 import express from 'express'
 import session from 'express-session'
 import 'reflect-metadata'
-import { createApolloServer } from './utils/apolloServer/createApolloServer'
-import { createConn } from './utils/database/createConnection'
-import { redis } from './utils/redis'
+import { createApolloServer } from './services/apolloServer/createApolloServer'
+import { createTypeormConn } from './services/database/createTypeormConn'
+import { redis } from './services/redis/redis'
 
 async function main() {
-  // Sets the env vars:
-  dotenv.config()
-
   // TypeORM:
-  const conn = await createConn()
-  if (conn) await conn.runMigrations()
+  const connection = await createTypeormConn()
+  if (connection) await connection.runMigrations()
 
   const app = express()
   app.set('trust proxy', 1)
@@ -48,7 +49,7 @@ async function main() {
   )
 
   // Creates the ApolloServer:
-  const apolloServer = await createApolloServer(__dirname)
+  const apolloServer = await createApolloServer()
   apolloServer.applyMiddleware({ app })
 
   // Starts the server:
@@ -62,6 +63,4 @@ async function main() {
   })
 }
 
-main().catch((error) =>
-  ['Whoops! Error:', error].forEach((e) => console.error(e))
-)
+main().catch((error) => console.log('Error:', error))

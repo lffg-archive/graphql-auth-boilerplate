@@ -1,9 +1,9 @@
 import { GraphQLError } from 'graphql'
 import { ArgumentValidationError } from 'type-graphql'
 import uuid from 'uuid/v4'
-import { createErrorObject } from '../error/createErrorObject'
-import { GenericError } from '../error/GenericError'
-import { bigLog } from '../log-utils'
+import { createErrorObject } from '../../utils/error/createErrorObject'
+import { GenericError } from '../../utils/error/GenericError'
+import { bigLog } from '../../utils/log/utils'
 
 export function formatError(error: GraphQLError) {
   // Format the validation errors:

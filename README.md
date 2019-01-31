@@ -13,6 +13,11 @@ A GraphQL API boilerplate with some features:
 - Rate limiting
 - Tests
 
+## Notes:
+
+1. There is a global variable called **`__ROOT__`** that points to the `src` directory. You can use it anywhere inside your app.
+2. The possible NODE_ENV environment variable values are, _by convention_, **`production`**, **`development`** or **`testing`**.
+
 ## To run:
 
 ```shell
@@ -33,4 +38,5 @@ yarn start
 
 ---
 
-:)
+Copyright (c) Luiz Felipe Gonçalves | 2019-current.  
+MIT Licensed.
