@@ -2,7 +2,6 @@
   "private": true,
   "name": "graphql-auth-boilerplate",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "https://github.com/lffg/graphql-auth-boilerplate.git",
   "author": "Luiz Felipe",
   "license": "MIT",
@@ -12,8 +11,7 @@
     "lint": "tslint --project tsconfig.json",
     "check-all": "yarn prettier && yarn lint",
     "start": "ts-node-dev --respawn --notify=false src/index.ts",
-    "c": "git-cz",
-    "uuid": "node -e 'console.log(require(\"uuid/v4\")())'"
+    "c": "git-cz"
   },
   "config": {
     "commitizen": {
@@ -27,31 +25,9 @@
     }
   },
   "dependencies": {
-    "apollo-server-express": "^2.3.3",
-    "argon2": "^0.20.1",
-    "class-validator": "^0.9.1",
-    "connect-redis": "^3.4.0",
-    "cors": "^2.8.5",
-    "dotenv-safe": "^6.1.0",
-    "express": "^4.16.4",
-    "express-session": "^1.15.6",
-    "graphql": "^14.1.1",
-    "ioredis": "^4.5.1",
-    "mysql": "^2.16.0",
-    "reflect-metadata": "^0.1.13",
-    "type-graphql": "^0.16.0",
-    "typeorm": "^0.2.12",
-    "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@types/connect-redis": "^0.0.8",
-    "@types/cors": "^2.8.4",
-    "@types/dotenv-safe": "^5.0.3",
-    "@types/express": "^4.16.1",
-    "@types/express-session": "^1.15.11",
-    "@types/ioredis": "^4.0.6",
     "@types/node": "^10.12.18",
-    "@types/uuid": "^3.4.4",
     "commitizen": "^3.0.5",
     "cz-conventional-changelog": "2.1.0",
     "del-cli": "^1.1.0",
